@@ -63,6 +63,7 @@ void main()
   p2sw_init(15);
   enableWDTInterrupts(); //enable periodic interrupt
   or_sr(0x8); //GIE (enable interrupts)
+  
   while(1) /* Run forever */
     {
       if(redrawScreen)
@@ -77,7 +78,6 @@ void main()
 	    case 2:
 	      clearScreen(COLOR_BLACK);
 	      blinkGreen();
-	      drawFigure(COLOR_BLUE);
 	      break;
 	    case 3:
 	      clearScreen(COLOR_BLUE);

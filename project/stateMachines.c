@@ -2,7 +2,9 @@
 #include "stateMachines.h"
 #include "led.h"
 #include "buzzer.h"
-#include "switches.h"
+#include "p2switches.h"
+#include "lcdutils.h"
+#include "lcddraw.h"
 
 static char state = 0;
 
@@ -55,16 +57,4 @@ void ledsOff()
   green_on = 0;
   led_changed = 1;
   led_update();
-}
-
-/* State of the buttons */
-void state_advance()
-{
-  switch(bPressed)
-    {
-    case 1: blinkRed(); break;
-    case 2: blinkGreen(); break;
-    case 3: blinkBoth(); buzzer_play(); break;
-    case 4: ledsOff(); buzzer_set_period(0); break;
-    }
 }
