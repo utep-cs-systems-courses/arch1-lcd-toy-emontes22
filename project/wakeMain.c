@@ -72,7 +72,7 @@ void main()
 	  switch(button)
 	    {
 	    case 1:
-	      clearScreen(COLOR_WHITE);
+	      clearScreen(COLOR_YELLOW);
 	      blinkRed();
 	      break;
 	    case 2:

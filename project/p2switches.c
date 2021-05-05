@@ -4,7 +4,7 @@
 static unsigned char switch_mask;
 static unsigned char switches_last_reported;
 static unsigned char switches_current;
-char button;
+char b;
 
 static void
 switch_update_interrupt_sense()
@@ -52,7 +52,7 @@ switch_interrupt_handler()
   unsigned int readSwitch = p2sw_read();
   for(unsigned int i = 0; i < 4; i++){
     if ((readSwitch & (1 << i)) == 0){ /*Checks when a button is pressed*/
-      button = i;
+      b = i;
     }
   }
 }

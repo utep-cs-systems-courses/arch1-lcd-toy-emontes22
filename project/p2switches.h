@@ -6,6 +6,6 @@ unsigned int p2sw_read();
 void p2sw_init(unsigned char mask);
 void switch_interrupt_handler();
 
-extern char button;
+extern char b;
 
 #endif // included

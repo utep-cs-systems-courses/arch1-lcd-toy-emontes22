@@ -58,3 +58,18 @@ void ledsOff()
   led_changed = 1;
   led_update();
 }
+
+void drawFigure()
+{
+  u_char offset_r = 100, offset_c = 65;
+  for (int r = 0; r <= 50; r++)
+    {
+      for (int c = 0; c <= r; c++)
+	{
+	  drawPixel(offset_c - c, offset_r - r, COLOR_BLUE);
+	  drawPixel(offset_c + c, offset_r - r, COLOR_BLUE);
+	  drawPixel(offset_c + c, offset_r + r, COLOR_BLUE);
+	  drawPixel(offset_c - c, offset_r + r, COLOR_BLUE);
+	}
+    }
+}
