@@ -13,7 +13,7 @@ all: runMain.elf
 
 #additional rules for files
 
-runMain.elf: ${COMMON_OBJECTS} wakeMain.o stateMachines.o buzzer.o led.o p2switches.o ../lib/libTimer.a ../lcdLib/lcdutils.o ../lcdLib/lcddraw.o ../lcdLib/font-5x7.o
+runMain.elf: ${COMMON_OBJECTS} wakeMain.o wdt_handler.s stateMachines.o buzzer.o led.o p2switches.o ../lib/libTimer.a ../lcdLib/lcdutils.o ../lcdLib/lcddraw.o ../lcdLib/font-5x7.o
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: runMain.elf

@@ -5,5 +5,7 @@ void blinkRed();
 void blinkGreen();
 void blinkBoth();
 void ledsOff();
+void drawFigure();
+void animation();
 
 #endif // included

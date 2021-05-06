@@ -18,8 +18,8 @@ void wdt_c_handler()
 {
   u_int read = p2sw_read(); //To read a button pressed
   static int secCount = 0;
-
   secCount++;
+
   /*Checking every time if a button is pressed*/
   if((read & 1) == 0)
     button = 1;
@@ -29,6 +29,7 @@ void wdt_c_handler()
     button = 3;
   if((read & 8) == 0)
     button = 4;
+  
   /*When a button is pressed it will go to main to execute command*/
   switch(button)
     {
@@ -47,6 +48,7 @@ void wdt_c_handler()
 	redrawScreen = 1;
       break;
     }
+  
   if(secCount == 250)
     secCount = 0;
 }
@@ -55,7 +57,7 @@ void main()
 {
   P1DIR |= GREEN_LED; /* Green led on when CPU on */
   P1OUT |= GREEN_LED;
-  
+
   configureClocks();
   lcd_init();
   led_init();
@@ -69,26 +71,36 @@ void main()
       if(redrawScreen)
 	{
 	  redrawScreen = 0;
+	  
 	  switch(button)
 	    {
-	    case 1:
-	      clearScreen(COLOR_YELLOW);
-	      blinkRed();
-	      break;
-	    case 2:
+	    case 1: /*S1 is pressed and red led is on and screen is color white*/
 	      clearScreen(COLOR_BLACK);
-	      blinkGreen();
+	      drawFigure();
+	      blinkRed();
+	      buzzer_set_period(0);
 	      break;
-	    case 3:
+	    case 2: /*S2 is pressed and screen is black, green led on and draws a blue square*/
+	      clearScreen(COLOR_WHITE);
+	      animation();
+	      ledsOff();
+	      buzzer_play();
+	      break;
+	    case 3: /*S3 is pressed and screen is blue, makes sound and prints "hello" to screen*/
 	      clearScreen(COLOR_BLUE);
 	      blinkBoth();
+	      buzzer_set_period(0);
+	      drawString5x7(10, 60, "Hello", COLOR_WHITE, COLOR_BLUE);
 	      break;
-	    case 4:
+	    case 4: /* everything is off, screen is white and prints "Bye" to screen*/
 	      clearScreen(COLOR_WHITE);
-	      ledsOff();
+	      blinkGreen();
+	      buzzer_set_period(0);
+	      drawString5x7(20, 80, "Bye", COLOR_BLACK, COLOR_WHITE);
 	      break;
 	    }
 	}
+      
       P1OUT &= ~LED_GREEN;/* green off */
       or_sr(0x10); /* CPU OFF */
       P1OUT |= LED_GREEN; /* green on */
