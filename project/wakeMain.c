@@ -90,13 +90,13 @@ void main()
 	      clearScreen(COLOR_BLUE);
 	      blinkBoth();
 	      buzzer_set_period(0);
-	      drawString5x7(10, 60, "Hello", COLOR_WHITE, COLOR_BLUE);
+	      drawString8x12(10, 60, "Hello", COLOR_WHITE, COLOR_BLUE);
 	      break;
 	    case 4: /* everything is off, screen is white and prints "Bye" to screen*/
 	      clearScreen(COLOR_WHITE);
 	      blinkGreen();
 	      buzzer_set_period(0);
-	      drawString5x7(20, 80, "Bye", COLOR_BLACK, COLOR_WHITE);
+	      drawString11x16(20, 80, "Bye", COLOR_BLACK, COLOR_WHITE);
 	      break;
 	    }
 	}
